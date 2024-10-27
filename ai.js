@@ -24,7 +24,7 @@ async function generatePoem(event) {
 
   const prompt = `User Instructions: Generate a poem about ${instructionsInput}`;
   const context =
-    "You are a poetry fanatic and you want to explore more poetry. Your mission is to write a 4-line poem. Make sure to follow these user instructions.";
+    "You are a poetry fanatic and you want to explore more poetry. Your mission is to write a 4-line poem. breate a line brek after every line. Sign-off with SheCodesAI. Make sure to follow these user instructions.";
   const apiUrl = `https://api.shecodes.io/ai/v1/generate?prompt=${encodeURIComponent(
     prompt
   )}&context=${encodeURIComponent(

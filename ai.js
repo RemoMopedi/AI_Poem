@@ -1,32 +1,48 @@
 function displayPoem(response) {
-  console.log("poem generated");
-  new Typewriter("#poem", {
+  console.log("Poem generated");
+
+  const poemDiv = document.querySelector(".poem");
+  poemDiv.innerHTML = "";
+
+  new Typewriter(poemDiv, {
     strings: response.data.answer,
     autoStart: true,
-    delay: 1,
+    delay: 50,
     cursor: "",
   });
 }
 
-function generatePoem(event) {
+async function generatePoem(event) {
   event.preventDefault();
 
-  let instructionsInput = document.querySelector("#user-instructions");
+  const instructionsInput = document.querySelector("#user-instructions").value;
 
-  let apiKey = "1fcdtd72630b3a012699b80444o4cf56";
-  let prompt =
-    "User Instructions: Generate a poem about ${instructions.Input.value}";
-  let context =
-    "You are a poetry fantic and you wnat to explore more poetry.Your mission is to wite a 4 line poem in basic HTML. Make sure to follow these user instructions.";
-  let apiUrl =
-    "https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apikey}";
+  if (!instructionsInput.trim()) {
+    alert("Please enter a topic for the poem.");
+    return;
+  }
 
-  console.log("generating poem");
-  console.log("Prompt: ${prompt}");
-  console.log("Context: ${context}");
+  const prompt = `User Instructions: Generate a poem about ${instructionsInput}`;
+  const context =
+    "You are a poetry fanatic and you want to explore more poetry. Your mission is to write a 4-line poem in basic HTML. Make sure to follow these user instructions.";
+  const apiUrl = `https://api.shecodes.io/ai/v1/generate?prompt=${encodeURIComponent(
+    prompt
+  )}&context=${encodeURIComponent(
+    context
+  )}&key=1fcdtd72630b3a012699b80444o4cf56`;
 
-  axios.get(apiUrl).then(dispayPoem);
+  console.log("Generating poem...");
+  console.log(`Prompt: ${prompt}`);
+  console.log(`Context: ${context}`);
+
+  try {
+    const response = await axios.get(apiUrl);
+    displayPoem(response);
+  } catch (error) {
+    console.error("Error generating poem:", error);
+    alert("An error occurred while generating the poem. Please try again.");
+  }
 }
 
-let poemFormElement = document.querySelector("#poem - generator - form");
+const poemFormElement = document.querySelector("#poem-generator-form");
 poemFormElement.addEventListener("submit", generatePoem);

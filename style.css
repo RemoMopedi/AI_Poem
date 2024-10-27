@@ -64,14 +64,20 @@ input[type="submit"]:hover {
 }
 
 .poem {
-  margin-top: 20px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background: #f9f9f9;
-  min-height: 100px;
-}
-
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e2e2e2;
+            border-radius: 5px;
+        }
+        .loading {
+            display: none;
+            font-weight: bold;
+            color: #555;
+        }
+        .error-message {
+            color: red;
+            display: none;
+        }
 footer {
   text-align: center;
   padding: 20px 0;

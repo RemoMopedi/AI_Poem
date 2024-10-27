@@ -24,12 +24,12 @@ async function generatePoem(event) {
 
   const prompt = `User Instructions: Generate a poem about ${instructionsInput}`;
   const context =
-    "You are a poetry fanatic and you want to explore more poetry. Your mission is to write a 4-line poem in basic HTML. Make sure to follow these user instructions.";
+    "You are a poetry fanatic and you want to explore more poetry. Your mission is to write a 4-line poem. Make sure to follow these user instructions.";
   const apiUrl = `https://api.shecodes.io/ai/v1/generate?prompt=${encodeURIComponent(
     prompt
   )}&context=${encodeURIComponent(
     context
-  )}&key=1fcdtd72630b3a012699b80444o4cf56`;
+  )}&key=1fcdtd72630b3a012699b80444o4cf56`; 
 
   console.log("Generating poem...");
   console.log(`Prompt: ${prompt}`);
@@ -46,3 +46,4 @@ async function generatePoem(event) {
 
 const poemFormElement = document.querySelector("#poem-generator-form");
 poemFormElement.addEventListener("submit", generatePoem);
+
